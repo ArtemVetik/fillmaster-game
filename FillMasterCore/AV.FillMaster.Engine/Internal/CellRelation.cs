@@ -3,6 +3,17 @@ namespace AV.FillMaster.FillEngine
 {
     internal class CellRelation
     {
+        private readonly Dictionary<CellType, CellInfo> _relations;
+
+        internal CellRelation(IEnumerable<KeyValuePair<CellType, CellInfo>> relations)
+        {
+            _relations = new Dictionary<CellType, CellInfo>(relations);
+        }
+
+        internal ICell CreateCell(CellType cell, ICellView view) => _relations[cell].CreateCell(view);
+        internal Type ClassType(CellType cell) => _relations[cell].ClassType();
+        internal CellType CellType(Type classType) => _relations.First(pair => pair.Value.ClassType() == classType).Key;
+
         internal class CellInfo
         {
             private readonly Func<ICellView, ICell> _constructor;
@@ -17,16 +28,5 @@ namespace AV.FillMaster.FillEngine
             internal ICell CreateCell(ICellView view) => _constructor?.Invoke(view);
             internal Type ClassType() => _classType;
         }
-
-        private readonly Dictionary<CellType, CellInfo> _relations;
-
-        internal CellRelation(IEnumerable<KeyValuePair<CellType, CellInfo>> relations)
-        {
-            _relations = new Dictionary<CellType, CellInfo>(relations);
-        }
-
-        internal ICell CreateCell(CellType cell, ICellView view) => _relations[cell].CreateCell(view);
-        internal Type ClassType(CellType cell) => _relations[cell].ClassType();
-        internal CellType CellType(Type classType) => _relations.First(pair => pair.Value.ClassType() == classType).Key;
     }
 }
