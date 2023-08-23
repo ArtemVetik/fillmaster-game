@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AV.FillMaster.Engine", "AV.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AV.FillMaster.Engine.Tests", "AV.FillMaster.Engine.Tests\AV.FillMaster.Engine.Tests.csproj", "{3A02A7D9-73AB-4354-908D-60F5EBA47A00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AV.FillMaster.Application", "AV.FillMaster.Application\AV.FillMaster.Application.csproj", "{4993365A-3892-43A6-9AF9-D63659A18247}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3A02A7D9-73AB-4354-908D-60F5EBA47A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A02A7D9-73AB-4354-908D-60F5EBA47A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A02A7D9-73AB-4354-908D-60F5EBA47A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4993365A-3892-43A6-9AF9-D63659A18247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4993365A-3892-43A6-9AF9-D63659A18247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4993365A-3892-43A6-9AF9-D63659A18247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4993365A-3892-43A6-9AF9-D63659A18247}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
