@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+using System.Threading.Tasks;
+
 namespace AV.FillMaster.FillEngine
 {
     internal class FillEngine : ICellAffect, IFillEngineSetup, IFillEngine

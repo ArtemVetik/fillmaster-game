@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace AV.FillMaster.FillEngine
 {
     internal class FilledCell : ICell

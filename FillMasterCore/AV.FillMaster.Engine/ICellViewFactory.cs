@@ -2,6 +2,6 @@
 {
     public interface ICellViewFactory
     {
-        public ICellView Create(BoardPosition position, CellType cell);
+        ICellView Create(BoardPosition position, CellType cell);
     }
 }

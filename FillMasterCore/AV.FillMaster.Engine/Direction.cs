@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace AV.FillMaster.FillEngine
 {
     public class Direction
@@ -11,10 +12,10 @@ namespace AV.FillMaster.FillEngine
             Down = 3,
         }
 
-        public static Direction Left => new(Type.Left);
-        public static Direction Up => new(Type.Up);
-        public static Direction Right => new(Type.Right);
-        public static Direction Down => new(Type.Down);
+        public static Direction Left => new Direction(Type.Left);
+        public static Direction Up => new Direction(Type.Up);
+        public static Direction Right => new Direction(Type.Right);
+        public static Direction Down => new Direction(Type.Down);
 
         private readonly Type _type;
 

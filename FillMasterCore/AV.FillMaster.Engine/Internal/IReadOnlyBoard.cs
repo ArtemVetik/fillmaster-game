@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace AV.FillMaster.FillEngine
 {
     internal interface IReadOnlyBoard

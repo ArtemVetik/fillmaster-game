@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace AV.FillMaster.FillEngine
 {
     public readonly struct BoardPosition : IEquatable<BoardPosition>
@@ -12,8 +13,8 @@ namespace AV.FillMaster.FillEngine
             Y = y;
         }
 
-        public static BoardPosition operator +(BoardPosition a, BoardPosition b) => new(a.X + b.X, a.Y + b.Y);
-        public static BoardPosition operator -(BoardPosition a, BoardPosition b) => new(a.X - b.X, a.Y - b.Y);
+        public static BoardPosition operator +(BoardPosition a, BoardPosition b) => new BoardPosition(a.X + b.X, a.Y + b.Y);
+        public static BoardPosition operator -(BoardPosition a, BoardPosition b) => new BoardPosition(a.X - b.X, a.Y - b.Y);
         public static bool operator ==(BoardPosition a, BoardPosition b) => a.X == b.X && a.Y == b.Y;
         public static bool operator !=(BoardPosition a, BoardPosition b) => !(a == b);
 
