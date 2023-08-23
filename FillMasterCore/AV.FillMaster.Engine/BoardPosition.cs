@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace AV.FillMaster.FillEngine
 {
     public readonly struct BoardPosition : IEquatable<BoardPosition>
