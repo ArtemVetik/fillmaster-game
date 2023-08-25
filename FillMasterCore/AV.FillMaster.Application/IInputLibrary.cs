@@ -2,7 +2,7 @@
 {
     public interface IInputLibrary
     {
-        IHudInput HudInput { get; }
-        IBoardInput BoardInput { get; }
+        IHudInput CreateHudInput();
+        IBoardInput CreateBoardInput();
     }
 }

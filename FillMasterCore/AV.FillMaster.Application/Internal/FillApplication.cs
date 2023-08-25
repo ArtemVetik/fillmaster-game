@@ -2,32 +2,41 @@ using AV.FillMaster.FillEngine;
 
 namespace AV.FillMaster.Application
 {
-    internal class FillApplication
+    internal class FillApplication : IFillApplication, IUpdate
     {
         private readonly IBoardInput _input;
-        private readonly IFillEngineSetup _fillSetup;
-        
+        private readonly IMoveDelay _moveDelay;
+
+        private IFillEngineSetup _fillSetup;
         private IFillEngine _fillEngine;
         private FillStatus _status;
 
-        public FillApplication(IFillEngineSetup fillSetup, IBoardInput input)
+        public FillApplication(IBoardInput input, IMoveDelay moveDelay)
         {
-            _fillSetup = fillSetup;
             _input = input;
+            _moveDelay = moveDelay;
             _status = FillStatus.InProgress;
         }
 
-        public FillStatus Update(IMoveDelay moveDelay)
+        public bool Initialized => _fillSetup != null;
+        public FillStatus Status => _status;
+
+        public void StartNew(IFillEngineSetup fillEngineSetup)
+        {
+            _fillSetup = fillEngineSetup;
+            _fillEngine = null;
+            _status = FillStatus.InProgress;
+        }
+
+        public void Update()
         {
             if (_status != FillStatus.InProgress)
-                return _status;
+                return;
 
             if (_fillEngine == null)
                 Setup();
             else
-                Move(moveDelay);
-
-            return FillStatus.InProgress;
+                Move(_moveDelay);
         }
 
         private void Setup()
