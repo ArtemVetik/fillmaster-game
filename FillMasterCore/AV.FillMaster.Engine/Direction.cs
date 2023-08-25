@@ -24,8 +24,18 @@ namespace AV.FillMaster.FillEngine
             _type = type;
         }
 
-        public static bool operator ==(Direction first, Direction second) => first._type == second._type;
-        public static bool operator !=(Direction first, Direction second) => first._type != second._type;
+        public static bool operator ==(Direction first, Direction second)
+        {
+            if (first is null)
+                return second is null;
+
+            if (second is null)
+                return false;
+
+            return first._type == second._type;
+        }
+
+        public static bool operator !=(Direction first, Direction second) => !(first == second);
 
         public BoardPosition Next(BoardPosition position)
         {

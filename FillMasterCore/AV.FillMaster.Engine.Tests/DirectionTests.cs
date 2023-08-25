@@ -8,7 +8,7 @@ namespace AV.FillMaster.Engine.Tests
         public void Next_AllDirections_ChangePositionToOne()
         {
             var position = new BoardPosition(0, 0);
-            
+
             Assert.Multiple(() =>
             {
                 Assert.That(Direction.Up.Next(position), Is.EqualTo(new BoardPosition(0, 1)));
@@ -42,12 +42,25 @@ namespace AV.FillMaster.Engine.Tests
         {
             var firstDirection = Direction.Right;
             var secondDirection = Direction.Right;
-            
+
             Assert.Multiple(() =>
             {
                 Assert.That(firstDirection, Is.EqualTo(secondDirection));
                 Assert.That(secondDirection, Is.EqualTo(firstDirection));
             });
+        }
+
+        [Test]
+        public void EqualsOperator_NullCheck_DoesNotThrow()
+        {
+            Assert.That(Direction.Right == null, Is.False);
+            Assert.That(Direction.Right != null, Is.True);
+            Assert.That(null == Direction.Up, Is.False);
+            Assert.That(null != Direction.Up, Is.True);
+
+            Direction direction = null;
+            Assert.That(direction == Direction.Left, Is.False);
+            Assert.That(direction == null, Is.True);
         }
     }
 }

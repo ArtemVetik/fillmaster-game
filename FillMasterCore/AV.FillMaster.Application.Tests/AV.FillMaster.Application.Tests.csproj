@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AV.FillMaster.Application\AV.FillMaster.Application.csproj" />
     <ProjectReference Include="..\AV.FillMaster.Engine\AV.FillMaster.Engine.csproj" />
   </ItemGroup>
 
