@@ -2,7 +2,11 @@
 {
     public interface ISaves
     {
-        public int CurrentLevelIndex();
-        public void IncreaseLevelIndex();
+        int CurrentLevel { get; }
+        int LastCompletedLevel { get; }
+        void SetCurrentLevel(int levelIndex);
+        void CompleteCurrentLevel();
+        int SolutionStep(int levelIndex);
+        void IncreaseSolutionStep(int levelIndex);
     }
 }

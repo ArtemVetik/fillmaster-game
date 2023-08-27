@@ -11,7 +11,9 @@ namespace AV.FillMaster.Application
 
             var fillApplication = new FillApplication(input.CreateBoardInput(), infrastructure.MoveDelay);
             var levelRoot = new LevelRoot(infrastructure.Saves, userInterface.CreateEndOfGameView(), fillApplication, levelProvider);
-            var hoodRoot = new HoodRoot(input.CreateHudInput(), userInterface.CreateHudView(), levelRoot);
+            var solutionRoot = new SolutionRoot(infrastructure.Saves, userInterface.CreateSolutionView(), levelProvider);
+            var levelListRoot = new LevelListRoot(infrastructure.Levels.Count, infrastructure.Saves, userInterface.CreateLevelListView(), levelRoot);
+            var hoodRoot = new HoodRoot(input.CreateHudInput(), userInterface.CreateHudView(), levelRoot, solutionRoot, levelListRoot);
 
             _updatables = new IUpdate[] { fillApplication, levelRoot, hoodRoot };
         }

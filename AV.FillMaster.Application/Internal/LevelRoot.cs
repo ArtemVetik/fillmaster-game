@@ -1,5 +1,4 @@
 ﻿using AV.FillMaster.FillEngine;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace AV.FillMaster.Application
@@ -12,7 +11,7 @@ namespace AV.FillMaster.Application
         private readonly LevelProvider _levelProvider;
 
         private Task _updateAsync;
-        private bool _restarting;
+        private bool _loading;
 
         public LevelRoot(ISaves saves, IEndOfGameView endOfGameView, IFillApplication fillApplication, LevelProvider levelProvider)
         {
@@ -38,31 +37,43 @@ namespace AV.FillMaster.Application
                 return;
 
             if (_fillApplication.Initialized == false)
-                await InitializeFillApplication(_saves.CurrentLevelIndex());
+                await InitializeFillApplication(_saves.LastCompletedLevel);
 
             if (_fillApplication.Status == FillStatus.Lose)
             {
                 await _endOfGameView.RenderLose();
-                await InitializeFillApplication(_saves.CurrentLevelIndex());
+                await InitializeFillApplication(_saves.CurrentLevel);
             }
 
             if (_fillApplication.Status == FillStatus.Win)
             {
                 await _endOfGameView.RenderWin();
-                _saves.IncreaseLevelIndex();
-                await InitializeFillApplication(_saves.CurrentLevelIndex());
+                _saves.CompleteCurrentLevel();
+                await InitializeFillApplication(_saves.CurrentLevel);
             }
         }
 
-        public async void Restart()
+        public void Load(int levelIndex)
         {
-            if (_restarting)
+            LoadLevel(levelIndex);
+        }
+
+        public void Restart()
+        {
+            LoadLevel(_saves.CurrentLevel);
+        }
+
+        private async void LoadLevel(int levelIndex)
+        {
+            if (_loading)
                 return;
 
-            _restarting = true;
+            _saves.SetCurrentLevel(levelIndex);
+
+            _loading = true;
             _fillApplication.StartNew(null);
-            await InitializeFillApplication(_saves.CurrentLevelIndex());
-            _restarting = false;
+            await InitializeFillApplication(_saves.CurrentLevel);
+            _loading = false;
         }
 
         private async Task InitializeFillApplication(int levelIndex)

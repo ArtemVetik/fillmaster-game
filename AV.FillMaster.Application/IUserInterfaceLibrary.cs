@@ -7,5 +7,7 @@ namespace AV.FillMaster.Application
         ICellViewFactory CreateCellViewFactory();
         IHudView CreateHudView();
         IEndOfGameView CreateEndOfGameView();
+        ISolutionView CreateSolutionView();
+        ILevelListView CreateLevelListView();
     }
 }

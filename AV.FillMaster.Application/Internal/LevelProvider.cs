@@ -15,13 +15,14 @@ namespace AV.FillMaster.Application
         }
 
         public int LevelIndex { get; private set; }
+        public LevelInfo LevelInfo { get; private set; }
 
         public async Task<IFillEngineSetup> LoadLevel(int index)
         {
             LevelIndex = index;
 
-            var levelInfo = await _levelDataBase.LoadLevel(index);
-            return new FillService(levelInfo.Cells, _cellViewFactory).Construct();
+            LevelInfo = await _levelDataBase.LoadLevel(index);
+            return new FillService(LevelInfo.Cells, _cellViewFactory).Construct();
         }
     }
 }
