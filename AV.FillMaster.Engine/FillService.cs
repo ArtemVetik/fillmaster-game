@@ -8,6 +8,10 @@ namespace AV.FillMaster.FillEngine
         private readonly IEnumerable<KeyValuePair<BoardPosition, CellType>> _cells;
         private readonly ICellViewFactory _viewFactory;
 
+        public FillService(IEnumerable<KeyValuePair<BoardPosition, CellType>> cells)
+            : this(cells, new EmptyCellViewFactory())
+        { }
+
         public FillService(IEnumerable<KeyValuePair<BoardPosition, CellType>> cells, ICellViewFactory viewFactory)
         {
             _cells = cells;
