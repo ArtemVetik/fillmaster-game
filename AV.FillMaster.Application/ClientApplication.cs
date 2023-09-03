@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Diagnostics;
+
 namespace AV.FillMaster.Application
 {
     public class ClientApplication
@@ -20,8 +23,15 @@ namespace AV.FillMaster.Application
 
         public void ExecuteFrame(long milliseconds)
         {
-            foreach (var updatable in _updatables)
-                updatable.Update();
+            try
+            {
+                foreach (var updatable in _updatables)
+                    updatable.Update();
+            }
+            catch (Exception exception)
+            {
+                Trace.WriteLine(exception);
+            }
         }
     }
 }
