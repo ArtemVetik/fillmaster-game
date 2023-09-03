@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AV.FillMaster.FillEngine
@@ -7,6 +8,7 @@ namespace AV.FillMaster.FillEngine
     {
         private readonly Board _board;
         private readonly IFillRule _rule;
+        private readonly List<BoardPosition> _fillTrail;
 
         private BoardPosition? _header;
         private MoveCancellationToken _cancelationToken;
@@ -15,7 +17,10 @@ namespace AV.FillMaster.FillEngine
         {
             _board = board;
             _rule = rule;
+            _fillTrail = new List<BoardPosition>();
         }
+
+        IReadOnlyList<BoardPosition> IFillEngine.FillTrail => _fillTrail;
 
         IFillEngine IFillEngineSetup.Setup(BoardPosition position)
         {
@@ -91,6 +96,7 @@ namespace AV.FillMaster.FillEngine
             var cell = _board.Cell(_header.Value);
 
             _board.Fill(_header.Value);
+            _fillTrail.Add(_header.Value);
             cell.FillAffect(this);
 
             return true;
