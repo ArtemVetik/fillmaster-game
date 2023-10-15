@@ -3,5 +3,6 @@
     public interface ICellViewFactory
     {
         ICellView Create(BoardPosition position, CellType cell);
+        void Clear();
     }
 }

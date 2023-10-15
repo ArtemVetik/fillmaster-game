@@ -30,6 +30,7 @@ namespace AV.FillMaster.FillEngine
 
             var cellRelations = new CellRelation(cellRelationsData);
             var cellFactory = new CellFactory(cellRelations, _viewFactory);
+            cellFactory.Clear();
 
             var convertedCells = _cells.Select(cell => new KeyValuePair<BoardPosition, ICell>(cell.Key, cellFactory.Create(cell.Value, cell.Key)));
             var board = new Board(convertedCells, cellFactory);

@@ -11,6 +11,11 @@
             _viewFactory = viewFactory;
         }
 
+        internal void Clear()
+        {
+            _viewFactory.Clear();
+        }
+
         internal ICell Create(CellType cell, BoardPosition position)
         {
             var cellInstance = _cellRelation.CreateCell(cell, _viewFactory.Create(position, cell));

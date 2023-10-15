@@ -71,7 +71,6 @@ namespace AV.FillMaster.Application
             _saves.SetCurrentLevel(levelIndex);
 
             _loading = true;
-            _fillApplication.StartNew(null);
             await InitializeFillApplication(_saves.CurrentLevel);
             _loading = false;
         }

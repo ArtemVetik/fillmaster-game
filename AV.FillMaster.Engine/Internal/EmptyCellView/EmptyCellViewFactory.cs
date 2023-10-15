@@ -6,5 +6,7 @@
         {
             return new EmptyCellView();
         }
+
+        public void Clear() { }
     }
 }

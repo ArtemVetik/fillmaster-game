@@ -8,5 +8,7 @@ namespace AV.FillMaster.Application.Tests
         {
             return new TestCellView();
         }
+
+        public void Clear() { }
     }
 }
